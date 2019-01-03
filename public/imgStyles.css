@@ -1,0 +1,129 @@
+
+
+.favStar {
+  background-image: url('/assets/favTrueStar/favoriteTrue.png');
+  background-size: 20px 20px;
+}
+
+@media (min-width: 768px) {
+  .favStar {
+    background-image: url('/assets/favTrueStar/favoriteTrue@2x.png');
+    background-size: 20px 20px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .favStar {
+    background-image: url('/assets/favTrueStar/favoriteTrue@3x.png');
+    background-size: 20px 20px;
+  }
+}
+
+.otherStar {
+  background-image: url('/assets/favFalseStar/favFalse.png');
+  background-size: 20px 20px;
+}
+
+@media (min-width: 768px) {
+  .otherStar {
+    background-image: url('/assets/favFalseStar/favFalse@2x.png');
+    background-size: 20px 20px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .otherStar {
+    background-image: url('/assets/favFalseStar/favFalse@3x.png');
+    background-size: 20px 20px;
+
+  }
+}
+
+.largeAvatar {
+  height: 110px;
+  width: 110px;
+}
+
+.largeAvatar.failed {
+  background-image: url('/assets/userLarge/userLarge.png');
+  background-size: 110px 110px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 768px) {
+  .largeAvatar {
+    height: 130px;
+    width: 130px;
+  }
+
+  .largeAvatar.failed {
+    background-image: url('/assets/userLarge/userLarge@2x.png');
+    background-size: 130px 130px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (min-width: 1000px) {
+
+  .largeAvatar {
+    height: 150px;
+    width: 150px;
+  }
+
+  .largeAvatar.failed {
+    background-image: url('/assets/userLarge/userLarge@3x.png');
+    background-size: 150px 150px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.smallAvatar {
+  height: 50px;
+  width: 50px;
+}
+
+.smallAvatar.failed {
+  background-image: url('/assets/userSmall/userSmall.png');
+  background-size: 50px 50px;
+  /* margin-left: auto;
+  margin-right: auto; */
+}
+
+@media (min-width: 768px) {
+  /* .largeAvatar {
+    height: 130px;
+    width: 130px;
+  } */
+
+  .smallAvatar.failed {
+    background-image: url('/assets/userSmall/userSmall@2x.png');
+    background-size: 50px 50px;
+    /* margin-left: auto;
+    margin-right: auto; */
+  }
+}
+
+@media (min-width: 1000px) {
+
+  /* .largeAvatar {
+    height: 150px;
+    width: 150px;
+  } */
+
+  .smallAvatar.failed {
+    background-image: url('/assets/userSmall/userSmall@3x.png');
+    background-size: 50px 50px;
+    /* margin-left: auto;
+    margin-right: auto; */
+  }
+}
+
+
+
+.star {
+  height: 20px!important;
+  width: 20px!important;
+}

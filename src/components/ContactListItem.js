@@ -13,6 +13,12 @@ export default class ContactListItem extends React.Component {
 
   }
 
+  imageFailedToLoad = () => {
+    this.setState({
+      imageFailed: true,
+    })
+  }
+
   toggleLiked = () => {
 
   }
@@ -20,10 +26,16 @@ export default class ContactListItem extends React.Component {
 
 
   render() {
+    let contact = this.props.contact
     return (
       <li className="contactListItemWrapper">
         <Link to={`/contacts/${this.props.contact.id}`} className="contactListItem">
-          <img src={this.state.contact.smallImageURL} alt={`${this.state.contact.name} avatar`} className="smallAvatar" />
+          {this.state.imageFailed !== true &&
+            <img onError={this.imageFailedToLoad} src={contact.smallImageURL} alt={`${contact.name} avatar`} className="smallAvatar" />
+          }
+          {this.state.imageFailed &&
+            <div alt={`${contact.name} avatar`} className={"smallAvatar failed "} />
+          }
           <div className="details">
             <div className="starHolder">
               {this.state.contact.isFavorite &&
