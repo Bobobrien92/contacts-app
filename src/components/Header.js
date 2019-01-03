@@ -2,11 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from "react-router-dom";
 
-// import favStar from '../assets/favTrueStar/favoriteTrue.png'
-
-// //const favStar = require('../assets/favTrueStar/favoriteTrue.png')
-// const favFalseStar = require('../assets/favFalseStar/favFalse.png')
-
 export default class Header extends React.Component {
   constructor(props) {
     super(props);
@@ -14,6 +9,12 @@ export default class Header extends React.Component {
       showBack: props.showBack || false,
       isFavorited: props.isFavorited || false,
     }
+  }
+
+  toggleFavorite = () => {
+    this.setState({
+      isFavorited: !this.state.isFavorited
+    })
   }
 
   render() {
@@ -27,9 +28,9 @@ export default class Header extends React.Component {
                 <div className="backBtnText">Contacts</div>
               </span>
             </Link>
-            <div className="headerFavHolder">
+            <button onClick={this.toggleFavorite} className="headerFavHolder">
               <div className={this.state.isFavorited ? 'star favStar' : ' star otherStar'} alt={this.state.isFavorited ? 'Favorited' : 'Other'} />
-            </div>
+            </button>
           </div>
         }
         {!this.props.isDetailsPage &&
