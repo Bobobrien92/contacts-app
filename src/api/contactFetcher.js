@@ -5,3 +5,7 @@ const contacts = require('../mockData/contacts.json')
 export const getAllContacts = async () => {
   return contacts
 }
+
+export const getContact = async (id) => {
+  return contacts.find(x=> x.id === id)
+}
