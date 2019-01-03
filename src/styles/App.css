@@ -5,11 +5,6 @@
 .contactListItem .details {
   padding-left: 5px;
 }
-.smallAvatar {
-  height: 50px;
-  width: 50px;
-  background-image: url('https://placehold.it/50x50');
-}
 .listHeader {
   background-color: #F4F4F4;
   font-size: 9px;
@@ -32,11 +27,13 @@
 }
 .contactListName {
   color: #858487;
-  font-size: 16px;
+  font-size: 15.5px;
+  font-weight: 700;
 }
 .contactListCompany {
   color: #DADADA;
-  font-size: 12px;
+  font-size: 11.5px;
+  font-weight: 400;
 }
 .contactListItem {
   display: flex;
@@ -62,9 +59,15 @@
   margin-inline-start: 0;
   margin-inline-end: 0;
 }
+.contactDetailPage .content {
+  padding-left: 10px;
+  padding-right: 10px;
+}
 .contactDetailPage .contactWrapper {
   padding-top: 20px;
+  padding-bottom: 20px;
   text-align: center;
+  border-bottom: 1px solid #d4d4d4;
 }
 .contactDetailPage .contactName {
   font-size: 21px;
@@ -74,10 +77,6 @@
   color: #d4d4d4;
   font-size: 15px;
   font-weight: 400;
-}
-.contactDetailPage .largeAvatar {
-  height: 110px;
-  width: 110px;
 }
 .detailsTitle {
   color: #D4D4D4;
@@ -89,7 +88,7 @@
 .phoneNumberItem {
   border-bottom: 1px solid #d4d4d4;
   padding-bottom: 15px;
-  margin: 15px 10px 15px 10px;
+  margin: 15px 0px 15px 0px;
 }
 .phoneNumberItem .fieldDetails {
   align-items: center;
@@ -112,10 +111,56 @@
 .genericContactItem {
   border-bottom: 1px solid #d4d4d4;
   padding-bottom: 15px;
-  margin: 15px 10px 15px 10px;
+  margin: 15px 0px 15px 0px;
 }
 .genericContactItem .detail {
   color: black;
   font-weight: 600;
   font-size: 14.5px;
+}
+.header {
+  background-color: #F9F9F9;
+  height: 50px;
+  width: 100%;
+}
+.header .backBtn {
+  align-items: center;
+  color: #86BBE0;
+  display: flex;
+  flex-direction: row;
+  height: 30px;
+  padding-top: 20px;
+  padding-left: 5px;
+}
+.header .backBtn .backBtnChevron {
+  font-size: 34px;
+  font-weight: 400;
+  margin-top: -5px;
+  padding-right: 5px;
+}
+.header .backBtn .backBtnText {
+  font-size: 14px;
+  font-weight: 600;
+}
+.headerDetails {
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+}
+.headerDetails a {
+  text-decoration: none;
+}
+.headerTitle {
+  font-size: 14px;
+  font-weight: 600;
+  padding-top: 20px;
+  text-align: center;
+}
+.headerFavHolder {
+  padding-top: 20px;
+  padding-right: 5px;
+}
+.backBtnChevron {
+  color: #86BBE0;
 }

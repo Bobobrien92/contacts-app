@@ -4,6 +4,7 @@ import { getAllContacts } from '../../api/contactFetcher'
 import { sortContactsAlphabeticallyByName } from '../../utils'
 //Necessary Components
 import ContactListItem from '../../components/ContactListItem'
+import Header from '../../components/Header'
 
 export default class ContactListPage extends React.Component {
   constructor(props) {
@@ -66,6 +67,7 @@ export default class ContactListPage extends React.Component {
     }
     return (
       <div className="contactList">
+        <Header isDetailsPage={false} />
         <div className="favoritedContacts">
           {this.state.favoritedContacts && this.state.favoritedContacts.length > 0 &&
             <div>
