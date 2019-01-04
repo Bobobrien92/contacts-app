@@ -1,4 +1,7 @@
-
+.star {
+  height: 20px!important;
+  width: 20px!important;
+}
 
 .favStar {
   background-image: url('/assets/favTrueStar/favoriteTrue.png');
@@ -93,37 +96,29 @@
 }
 
 @media (min-width: 768px) {
-  /* .largeAvatar {
-    height: 130px;
-    width: 130px;
-  } */
+  .smallAvatar {
+    height: 60px;
+    width: 60px;
+  }
 
   .smallAvatar.failed {
     background-image: url('/assets/userSmall/userSmall@2x.png');
-    background-size: 50px 50px;
-    /* margin-left: auto;
-    margin-right: auto; */
+    background-size: 60px 60px;
   }
 }
 
 @media (min-width: 1000px) {
 
-  /* .largeAvatar {
-    height: 150px;
-    width: 150px;
-  } */
+  .smallAvatar {
+    height: 70px;
+    width: 70px;
+  }
 
   .smallAvatar.failed {
     background-image: url('/assets/userSmall/userSmall@3x.png');
-    background-size: 50px 50px;
-    /* margin-left: auto;
-    margin-right: auto; */
+    background-size: 70px 70px;
   }
 }
 
 
 
-.star {
-  height: 20px!important;
-  width: 20px!important;
-}

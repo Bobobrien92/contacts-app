@@ -1,0 +1,59 @@
+.contactListItem {
+  border-top: 1px solid #EAEAEA;
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  text-decoration: none;
+
+  .details {
+    display: flex;
+    flex-direction: row;
+    padding-left: 5px;
+  }
+}
+
+.contactListItem,
+:first {
+  border-top: none;
+}
+
+.contactListItemWrapper:hover {
+  background-color: #F4F4F4;
+}
+
+
+.contactListName {
+  color: #858487;
+  font-size: 15.5px;
+  font-weight: 700;
+}
+
+.contactListCompany {
+  color: #DADADA;
+  font-size: 11.5px;
+  font-weight: 400;
+}
+
+@media (min-width: 768px) {
+  .contactListName {
+    font-size: 16.5px;
+    font-weight: 700;
+  }
+
+  .contactListCompany {
+    font-size: 13px;
+    font-weight: 500;
+  }
+}
+
+@media (min-width: 1000px) {
+  .contactListName {
+    font-size: 17.5px;
+    font-weight: 700;
+  }
+
+  .contactListCompany {
+    font-size: 15px;
+    font-weight: 500;
+  }
+}

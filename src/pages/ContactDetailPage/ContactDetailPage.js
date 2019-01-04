@@ -40,7 +40,7 @@ class ContactDetailPage extends React.Component {
   getContact() {
     let contact = this.props.contacts.allContacts.find(x => x.id === this.state.contactId)
     if (contact) {
-      this.setState({contact})
+      this.setState({ contact })
     }
   }
 
