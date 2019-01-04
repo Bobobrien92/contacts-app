@@ -21,8 +21,9 @@ class ContactDetailPage extends React.Component {
   }
 
   componentDidMount() {
-    let contact = this.props.contacts.allContacts.find(x => x.id === this.state.contactId)
-    this.setState({ contact })
+    if (this.props.contacts.fetched && !this.props.contacts.failedToFetch) {
+      this.getContact()
+    }
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -33,17 +34,25 @@ class ContactDetailPage extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.contacts !== this.props.contacts) {
+    if (prevProps.contacts !== this.props.contacts && this.props.contacts.fetched) {
       this.getContact();
+    }
+    if (prevProps.contacts !== this.props.contacts && this.props.contacts.failedToFetch) {
+      this.setState({
+        failedToFetch: true
+      })
     }
   }
 
   getContact() {
+    if (this.props.contacts.failedToFetch) {
+      return this.setState({ failedToFetch: true })
+    }
     let contact = this.props.contacts.allContacts.find(x => x.id === this.state.contactId)
     if (contact) {
       this.setState({ contact, ready: true })
     } else {
-      this.setState({ready: true})
+      this.setState({ ready: true })
     }
   }
 
@@ -68,24 +77,32 @@ class ContactDetailPage extends React.Component {
   }
 
   render() {
-    if (!this.state.contact && !this.state.ready ) {
-      return(
-        <div style={{textAlign: 'center'}}>
+    if (this.state.failedToFetch) {
+      return (
+        <div style={{ textAlign: 'center' }}>
+          <h1>Failed to Fetch Contacts</h1>
+        </div>
+      )
+    }
+    if (!this.state.contact && !this.state.ready) {
+      return (
+        <div style={{ textAlign: 'center' }}>
           <div className="spinner"></div>
           <h1>Loading</h1>
         </div>
 
       )
     }
-    if (!this.state.contact && this.state.ready) {
-      return(
-        <div style={{textAlign: 'center'}}>
-          <h1>Contact Not Found!</h1>
-          <Link className="returnHomeLink" to={`/`}>Return to Contacts</Link>
-        </div>
+    if (this.props.contact)
+      if (!this.state.contact && this.state.ready) {
+        return (
+          <div style={{ textAlign: 'center' }}>
+            <h1>Contact Not Found!</h1>
+            <Link className="returnHomeLink" to={`/`}>Return to Contacts</Link>
+          </div>
 
-      )
-    }
+        )
+      }
     let contact = this.state.contact
     let address = formatAddress(contact.address)
     return (

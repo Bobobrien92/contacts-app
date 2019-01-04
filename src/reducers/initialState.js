@@ -1,7 +1,8 @@
 export default {
   contacts: {
-    fetched: false,
     allContacts: [],
+    fetched: false,
+    failedToFetch: false,
     //favoritedContacts: [],
     //otherContacts: [],
   }

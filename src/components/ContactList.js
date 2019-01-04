@@ -52,6 +52,13 @@ class ContactList extends React.Component {
   }
 
   render() {
+    if (this.state.failedToFetch || this.props.contacts.failedToFetch) {
+      return (
+        <div style={{ textAlign: 'center' }}>
+          <h1>Failed to Fetch Contacts</h1>
+        </div>
+      )
+    }
     if (!this.props.contacts.fetched === true) {
       return <div>Loading...</div>
     }
