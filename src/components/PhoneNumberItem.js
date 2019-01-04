@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {formatPhoneNumber} from '../utils'
 
 export default class PhoneNumberItem extends React.Component {
@@ -13,4 +14,9 @@ export default class PhoneNumberItem extends React.Component {
       </div>
     )
   }
+}
+
+PhoneNumberItem.propTypes = {
+  number: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 }

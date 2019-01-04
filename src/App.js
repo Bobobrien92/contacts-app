@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import * as contactActions from './actions/actions'
 import { bindActionCreators } from 'redux';
 
-class App extends Component {
+export class App extends Component {
 
   componentDidMount = async () => {
     this.props.contactActions.fetchContacts()
