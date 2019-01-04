@@ -59,7 +59,6 @@ class ContactList extends React.Component {
       favoritedContacts,
       otherContacts
     } = this.determineFavs(this.props.contacts.allContacts)
-    console.log({favoritedContacts, otherContacts})
     let sortResult = this.sortContacts(favoritedContacts, otherContacts)
     favoritedContacts = sortResult.favoritedContacts
     otherContacts = sortResult.otherContacts
@@ -86,14 +85,13 @@ class ContactList extends React.Component {
         </div>
         <div className="otherContacts">
           <div className="listHeader">
-            OTHER CONTACTS
+            {favoritedContacts.length > 0 ? 'OTHER CONTACTS' : 'CONTACTS'}
           </div>
           {otherContacts && otherContacts.length > 0 &&
             <ul className="list">
               {otherContacts.map(contact =>
                 <ContactListItem
                   contact={contact}
-                  isFavorited={true}
                   key={contact.id}
                 />
               )}
