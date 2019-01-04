@@ -7,6 +7,7 @@ import Header from '../../components/Header'
 import { connect } from 'react-redux';
 import * as contactActions from '../../actions/actions'
 import { bindActionCreators } from 'redux';
+import { Link } from "react-router-dom"
 
 
 class ContactDetailPage extends React.Component {
@@ -40,7 +41,9 @@ class ContactDetailPage extends React.Component {
   getContact() {
     let contact = this.props.contacts.allContacts.find(x => x.id === this.state.contactId)
     if (contact) {
-      this.setState({ contact })
+      this.setState({ contact, ready: true })
+    } else {
+      this.setState({ready: true})
     }
   }
 
@@ -65,11 +68,23 @@ class ContactDetailPage extends React.Component {
   }
 
   render() {
-    if (!this.state.contact && !this.state.ready) {
-      return <div>Fetching Contact...</div>
+    if (!this.state.contact && !this.state.ready ) {
+      return(
+        <div style={{textAlign: 'center'}}>
+          <div className="spinner"></div>
+          <h1>Loading</h1>
+        </div>
+
+      )
     }
     if (!this.state.contact && this.state.ready) {
-      return <div>Contact Not Found</div>
+      return(
+        <div style={{textAlign: 'center'}}>
+          <h1>Contact Not Found!</h1>
+          <Link className="returnHomeLink" to={`/`}>Return to Contacts</Link>
+        </div>
+
+      )
     }
     let contact = this.state.contact
     let address = formatAddress(contact.address)

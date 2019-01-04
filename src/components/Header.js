@@ -46,5 +46,6 @@ export default class Header extends React.Component {
 
 Header.propTypes = {
   isDetailsPage: PropTypes.bool.isRequired,
+  isFavorited: PropTypes.bool,
   onToggle: PropTypes.func,
 }

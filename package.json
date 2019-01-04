@@ -30,6 +30,11 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "less-watch-compiler": "^1.13.0"
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.7.1",
+    "jest": "^23.6.0",
+    "jest-cli": "^23.6.0",
+    "less-watch-compiler": "^1.13.0",
+    "sinon": "^7.2.2"
   }
 }
