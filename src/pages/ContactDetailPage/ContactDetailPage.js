@@ -1,25 +1,47 @@
 import React from 'react'
-//import PropTypes from 'prop-types'
-import { getContact } from '../../api/contactFetcher'
+import PropTypes from 'prop-types'
 import PhoneNumberItem from '../../components/PhoneNumberItem'
 import GenericContactItem from '../../components/GenericContactItem'
 import { formatAddress, parseBirthdate } from '../../utils'
 import Header from '../../components/Header'
+import { connect } from 'react-redux';
+import * as contactActions from '../../actions/actions';
+import { bindActionCreators } from 'redux';
 
-export default class ContactDetailPage extends React.Component {
+
+class ContactDetailPage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      contactId: this.props.match.params.id,
       contact: null,
-      contactImageUrl: '/assets/userLarge/userLarge.png',
+      contactId: this.props.match.params.id,
       imageFailed: false,
     }
   }
 
-  async componentDidMount() {
-    let contact = await getContact(this.state.contactId)
-    this.setState({ contact})
+  componentDidMount() {
+    let contact = this.props.contacts.allContacts.find(x => x.id === this.state.contactId)
+    this.setState({ contact })
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.contacts !== prevState.contacts) {
+      return { contacts: nextProps.contacts };
+    }
+    else return null;
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.contacts !== this.props.contacts) {
+      this.getContact();
+    }
+  }
+
+  getContact() {
+    let contact = this.props.contacts.allContacts.find(x => x.id === this.state.contactId)
+    if (contact) {
+      this.setState({contact})
+    }
   }
 
   getPhoneValues(phone) {
@@ -52,7 +74,7 @@ export default class ContactDetailPage extends React.Component {
         <div className="content">
           <div className="contactWrapper">
             {this.state.imageFailed !== true &&
-              <img onError={this.imageFailedToLoad} src={contact.largeImageURL} alt={`${contact.name} avatar`} className="largeAvatar"/>
+              <img onError={this.imageFailedToLoad} src={contact.largeImageURL} alt={`${contact.name} avatar`} className="largeAvatar" />
             }
             {this.state.imageFailed &&
               <div alt={`${contact.name} avatar`} className={"largeAvatar failed "} />
@@ -99,6 +121,16 @@ export default class ContactDetailPage extends React.Component {
   }
 }
 
-// ContactDetailPage.propTypes = {
-//   id: PropTypes.number,
-// }
+const mapStateToProps = state => ({
+  contacts: state.contacts,
+})
+const mapDispatchToProps = dispatch => ({
+  contactActions: bindActionCreators(contactActions, dispatch)
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactDetailPage)
+
+
+ContactDetailPage.propTypes = {
+  contacts: PropTypes.object.isRequired,
+}
