@@ -9,6 +9,7 @@ export const sortArrayByStringPropAscending = (array, propString) => {
       var textB = b[propString]
       return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
     })
+    return array
   }
   catch {
     return array

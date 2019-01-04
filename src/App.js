@@ -3,8 +3,16 @@ import ContactListPage from './pages/ContactListPage/ContactListPage'
 import ContactDetailPage from './pages/ContactDetailPage/ContactDetailPage'
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import './styles/app.css';
+import { connect } from 'react-redux';
+import * as contactActions from './actions/actions'
+import { bindActionCreators } from 'redux';
 
 class App extends Component {
+
+  componentDidMount = async () => {
+    this.props.contactActions.fetchContacts()
+  }
+
   render() {
     return (
       <div className="App">
@@ -20,4 +28,13 @@ class App extends Component {
   }
 }
 
-export default App;
+
+const mapStateToProps = state => ({
+  contacts: state.contacts,
+})
+
+const mapDispatchToProps = dispatch => ({
+  contactActions: bindActionCreators(contactActions, dispatch)
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

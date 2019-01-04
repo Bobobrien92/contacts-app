@@ -5,12 +5,8 @@ export default class ContactListItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      contact: props.contact
+      contact: props.contact,
     }
-  }
-
-  getImage = async () => {
-
   }
 
   imageFailedToLoad = () => {
@@ -18,12 +14,6 @@ export default class ContactListItem extends React.Component {
       imageFailed: true,
     })
   }
-
-  toggleLiked = () => {
-
-  }
-
-
 
   render() {
     let contact = this.props.contact
