@@ -1,5 +1,5 @@
 import initialState from './initialState';
-import { FETCH_CONTACTS, RECEIVE_CONTACTS } from '../actions/actionTypes';
+import { FETCH_CONTACTS, RECEIVE_CONTACTS, UPDATE_CONTACTS } from '../actions/actionTypes';
 
 export default function contacts(state = initialState.contacts, action) {
   let newState;
@@ -9,9 +9,13 @@ export default function contacts(state = initialState.contacts, action) {
     case RECEIVE_CONTACTS:
       newState = {
         allContacts: action.contacts,
-        favoritedContacts: action.contacts.filter(x=> x.isFavorite),
         fetched: action.contacts !== null,
-        otherContacts: action.contacts.filter(x=> x.isFavorite === false)
+      }
+      return newState;
+    case UPDATE_CONTACTS:
+      newState = {
+        allContacts: action.contacts,
+        fetched: action.contacts !== null,
       }
       return newState;
     default:

@@ -1,19 +1,16 @@
-import * as types from './actionTypes';
+import * as types from './actionTypes'
+const API_ENDPOINT = 'https://s3.amazonaws.com/technical-challenge/v3/contacts.json'
 
-function url() {
-  return 'https://s3.amazonaws.com/technical-challenge/v3/contacts.json'
-}
 
 export const fetchContacts = () => {
   return dispatch => {
-    return fetch(url(), {
+    return fetch(API_ENDPOINT, {
       method: 'GET',
       headers: {
         "Accept": "application/json",
-        // 'Content-Type': 'application/json'
       }
     })
-      .then(response => { return response.json();})
+      .then(response => { return response.json()})
       .then(json => {
         dispatch(receiveContacts(json))
       });
@@ -27,13 +24,21 @@ export const receiveContacts = contacts => {
   }
 }
 
+export const updateContacts = (contacts) => {
+  return {
+    contacts: contacts ? contacts : [],
+    type: types.RECEIVE_CONTACTS,
+  }
+}
+
 export const toggleFavorite = contact => {
   return (dispatch, getState) => {
-    let contacts = getState().contacts.allContacts
-    let contact = contacts.filter(x=> x.id === contact.id)
     if (contact) {
+      let allContacts = getState().contacts.allContacts
+      allContacts = allContacts.filter(x=> x.id !== contact.id)
       contact.isFavorite = !contact.isFavorite
-
+      allContacts.push(contact)
+      dispatch(updateContacts(allContacts))
     }
   }
 }

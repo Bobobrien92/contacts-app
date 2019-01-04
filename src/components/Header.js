@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
 
 export default class Header extends React.Component {
   constructor(props) {
@@ -15,6 +15,9 @@ export default class Header extends React.Component {
     this.setState({
       isFavorited: !this.state.isFavorited
     })
+    if (this.props.onToggle) {
+      this.props.onToggle()
+    }
   }
 
   render() {
@@ -43,4 +46,5 @@ export default class Header extends React.Component {
 
 Header.propTypes = {
   isDetailsPage: PropTypes.bool.isRequired,
+  onToggle: PropTypes.func,
 }

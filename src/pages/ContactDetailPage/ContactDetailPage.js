@@ -5,7 +5,7 @@ import GenericContactItem from '../../components/GenericContactItem'
 import { formatAddress, parseBirthdate } from '../../utils'
 import Header from '../../components/Header'
 import { connect } from 'react-redux';
-import * as contactActions from '../../actions/actions';
+import * as contactActions from '../../actions/actions'
 import { bindActionCreators } from 'redux';
 
 
@@ -59,6 +59,11 @@ class ContactDetailPage extends React.Component {
     })
   }
 
+  toggleFavorite = () => {
+    let contact = this.state.contact
+    this.props.contactActions.toggleFavorite(contact)
+  }
+
   render() {
     if (!this.state.contact && !this.state.ready) {
       return <div>Fetching Contact...</div>
@@ -70,7 +75,7 @@ class ContactDetailPage extends React.Component {
     let address = formatAddress(contact.address)
     return (
       <div className="contactDetailPage">
-        <Header isDetailsPage isFavorited={contact.isFavorite} />
+        <Header isDetailsPage isFavorited={contact.isFavorite} onToggle={this.toggleFavorite} />
         <div className="content">
           <div className="contactWrapper">
             {this.state.imageFailed !== true &&

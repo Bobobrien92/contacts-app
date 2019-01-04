@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { sortContactsAlphabeticallyByName } from '../utils'
 import ContactListItem from './ContactListItem'
 import {connect} from 'react-redux';
@@ -17,6 +18,23 @@ class ContactList extends React.Component {
   componentDidMount = async () => {
     if (!this.props.contacts || !this.props.contacts.allContacts) {
       this.props.contactActions.fetchContacts()
+    }
+  }
+
+  determineFavs = contacts => {
+    if (!contacts) {
+      return {
+        favoritedContacts: [],
+        otherContacts : [],
+      }
+    }
+    else {
+      let favoritedContacts = contacts.filter(x=> x.isFavorite)
+      let otherContacts = contacts.filter(x=> x.isFavorite === false)
+      return {
+        favoritedContacts,
+        otherContacts
+      }
     }
   }
 
@@ -40,7 +58,11 @@ class ContactList extends React.Component {
     let {
       favoritedContacts,
       otherContacts
-    } = this.sortContacts(this.props.contacts.favoritedContacts, this.props.contacts.otherContacts)
+    } = this.determineFavs(this.props.contacts.allContacts)
+    console.log({favoritedContacts, otherContacts})
+    let sortResult = this.sortContacts(favoritedContacts, otherContacts)
+    favoritedContacts = sortResult.favoritedContacts
+    otherContacts = sortResult.otherContacts
 
     return (
       <div className="contactList">
@@ -81,6 +103,10 @@ class ContactList extends React.Component {
       </div>
     )
   }
+}
+
+ContactList.propTypes = {
+  contacts: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = state => ({
